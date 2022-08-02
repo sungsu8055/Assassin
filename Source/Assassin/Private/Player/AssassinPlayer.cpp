@@ -14,11 +14,10 @@ AAssassinPlayer::AAssassinPlayer()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Set size for collision capsule
-	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 90.0f);
 
-	// set our turn rates for input
-	BaseTurnRate = 45.f;
-	BaseLookUpRate = 45.f;
+	// 캐릭터 메쉬 설정
+	GetMesh()->SetRelativeLocationAndRotation(FVector(0, 0, -87), FRotator(0, -90, 0));
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -30,11 +29,13 @@ AAssassinPlayer::AAssassinPlayer()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
+	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = 300.0f; // The camera follows at this distance behind the character	
+	CameraBoom->SocketOffset = FVector(0, 0, 50);
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 	// Create a follow camera
@@ -70,6 +71,13 @@ void AAssassinPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	// 전력질주 모드 키 바인딩
+	PlayerInputComponent->BindAction("SprintMode", IE_Pressed, this, &AAssassinPlayer::OnActionSprintMode);
+	PlayerInputComponent->BindAction("SprintMode", IE_Released, this, &AAssassinPlayer::OnActionReleaseSprintMode);
+	// 내려가기 흐름 키 바인딩
+	PlayerInputComponent->BindAction("DownFlow", IE_Pressed, this, &AAssassinPlayer::OnActionDownFlow);
+
+	// 이동 키 바인딩 WASD
 	PlayerInputComponent->BindAxis("MoveForward", this, &AAssassinPlayer::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AAssassinPlayer::MoveRight);
 
@@ -77,9 +85,7 @@ void AAssassinPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
 	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("TurnRate", this, &AAssassinPlayer::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("LookUpRate", this, &AAssassinPlayer::LookUpAtRate);
 }
 
 void AAssassinPlayer::MoveForward(float Value)
@@ -111,15 +117,23 @@ void AAssassinPlayer::MoveRight(float Value)
 	}
 }
 
-void AAssassinPlayer::TurnAtRate(float Rate)
+// 전력질주 모드 활성
+void AAssassinPlayer::OnActionSprintMode()
 {
-	// calculate delta for this frame from the rate information
-	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
+	// 전력질주 모드 속도로 변경
+	GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
 }
 
-void AAssassinPlayer::LookUpAtRate(float Rate)
+// 전력질주 모드 비활성
+void AAssassinPlayer::OnActionReleaseSprintMode()
 {
-	// calculate delta for this frame from the rate information
-	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
+	// 일반이동 모드 속도로 변경
+	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+}
+
+// 전력질주 모드 - 내려가기 흐름
+void AAssassinPlayer::OnActionDownFlow()
+{
+
 }
 
