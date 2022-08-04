@@ -22,19 +22,14 @@ class ASSASSIN_API AAssassinPlayer : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AAssassinPlayer();
-	
-	// 이동속도 변수
-	// 전력질주 모드
-	UPROPERTY(EditAnywhere)
-	float sprintSpeed = 600;
-	// 일반이동 모드
-	UPROPERTY(EditAnywhere)
-	float walkSpeed = 170;
 
-	// 장애물 넘기 변수
-	// 넘기 가능 장애물 높이 애로우
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UArrowComponent* ableToJumpOverHeights;
+	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float BaseTurnRate;
+
+	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float BaseLookUpRate;
 
 protected:
 	// Called when the game starts or when spawned
@@ -53,12 +48,17 @@ public:
 	/** Called for side to side input */
 	void MoveRight(float Value);
 
-	// 질주모드 함수
-	void OnActionSprintMode();
-	void OnActionReleaseSprintMode();
-	// 내려가기 흐름
-	void OnActionDownFlow();
-	// 올라가기 흐름
+	/**
+	 * Called via input to turn at a given rate.
+	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
+	 */
+	void TurnAtRate(float Rate);
+
+	/**
+	 * Called via input to turn look up/down at a given rate.
+	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
+	 */
+	void LookUpAtRate(float Rate);
 
 public:
 	/** Returns CameraBoom subobject **/
