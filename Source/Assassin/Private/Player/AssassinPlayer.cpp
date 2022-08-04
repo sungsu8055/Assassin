@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h"
 #include <Camera/CameraComponent.h>
 #include <GameFramework/SpringArmComponent.h>
+#include <Components/ArrowComponent.h>
 
 // Sets default values
 AAssassinPlayer::AAssassinPlayer()
@@ -43,8 +44,12 @@ AAssassinPlayer::AAssassinPlayer()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+	// 점프 가능 장애물 높이 컴포넌트
+	ableToJumpOverHeights = CreateDefaultSubobject<UArrowComponent>(TEXT("ableToJumpOverHeights"));
+	ableToJumpOverHeights->SetupAttachment(RootComponent);
+	// 애로우의 위치 높이값이 캐릭터가 넘을 수 있는 장애물 높이 값이 됨
+	ableToJumpOverHeights->SetRelativeLocation(FVector(0, 0, -40));
+
 }
 
 // Called when the game starts or when spawned
@@ -68,7 +73,7 @@ void AAssassinPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	// PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// 전력질주 모드 키 바인딩

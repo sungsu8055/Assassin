@@ -31,6 +31,11 @@ public:
 	UPROPERTY(EditAnywhere)
 	float walkSpeed = 170;
 
+	// 장애물 넘기 변수
+	// 넘기 가능 장애물 높이 애로우
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* ableToJumpOverHeights;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
