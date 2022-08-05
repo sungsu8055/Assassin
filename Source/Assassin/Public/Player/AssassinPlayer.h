@@ -23,7 +23,10 @@ public:
 	// Sets default values for this character's properties
 	AAssassinPlayer();
 	
-	// 이동속도 변수
+// <변수 선언부>
+//===========================================================================================================================================
+
+	// 이동 -------------------------------------------------------------------------------------------
 	// 전력질주 모드
 	UPROPERTY(EditAnywhere)
 	float sprintSpeed = 600;
@@ -31,11 +34,52 @@ public:
 	UPROPERTY(EditAnywhere)
 	float walkSpeed = 170;
 
-	// 장애물 넘기 변수
+	// 파쿠르 -----------------------------------------------------------------------------------------
+	// 컴포넌트 --------------------------------------------------
 	// 넘기 가능 장애물 높이 애로우
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UArrowComponent* ableToJumpOverHeights;
+	// 벽타기 측면이동 애로우
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* hangingMoveArrowL;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* hangingMoveArrowR;
+	// 측면 점프 이동 애로우
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* leftLedgeArrow;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* rightLedgeArrow;
+	// 조건 변수 --------------------------------------------------
+	// 벽 매달림 상태 확인 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bHangingP;
+	// 측면 이동 가능 여부 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bMoveLeft;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bMoveRight;
+	// 측면 이동 진행 여부 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bMovingLeft;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bMovingRight;
+	// 측면 점프 이동 가능 여부 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanJumpLeft;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanJumpRight;
+	// 측면 점프 이동 확인 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bIsJumpingLedge;
+	// 측면 코너 이동 가능 여부 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanTurnLeft;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanTurnRight;
 
+	
+// <함수 선언부>
+//===========================================================================================================================================
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -49,7 +93,6 @@ public:
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
-
 	/** Called for side to side input */
 	void MoveRight(float Value);
 

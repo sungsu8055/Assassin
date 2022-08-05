@@ -19,5 +19,13 @@ void UAssassinAnimInst::NativeUpdateAnimation(float DeltaSeconds)
 		bIsJumping = playerMove->IsFalling();
 		// 전진 속도 변수 대입
 		forwardSpeed = playerMove->Velocity.Size();
+
+		// 플레이어의 난간 측면 이동 변수와 대입
+		// 이동 중
+		bLedgeMovingRightAnim = player->bMovingRight;
+		bLedgeMovingLeftAnim = player->bMovingLeft;
+		// 이동 가능 여부
+		bLedgeMoveRightAnim = player->bMoveRight;
+		bLedgeMoveLeftAnim = player->bMoveLeft;
 	}
 }

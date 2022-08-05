@@ -11,7 +11,8 @@
 // Sets default values
 AAssassinPlayer::AAssassinPlayer()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this character to call Tick() every frame.  
+	// You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Set size for collision capsule
@@ -26,8 +27,10 @@ AAssassinPlayer::AAssassinPlayer()
 	bUseControllerRotationRoll = false;
 
 	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
+	// Character moves in the direction of input...	
+	GetCharacterMovement()->bOrientRotationToMovement = true; 
+	// ...at this rotation rate
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); 
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
@@ -41,7 +44,8 @@ AAssassinPlayer::AAssassinPlayer()
 
 	// Create a follow camera
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
-	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
+	// Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
+	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); 
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
 	// 점프 가능 장애물 높이 컴포넌트
@@ -49,7 +53,20 @@ AAssassinPlayer::AAssassinPlayer()
 	ableToJumpOverHeights->SetupAttachment(RootComponent);
 	// 애로우의 위치 높이값이 캐릭터가 넘을 수 있는 장애물 높이 값이 됨
 	ableToJumpOverHeights->SetRelativeLocation(FVector(0, 0, -40));
-
+	// 매달림 상태 좌우이동 애로우
+	hangingMoveArrowL = CreateDefaultSubobject<UArrowComponent>(TEXT("hangingMoveArrowL"));
+	hangingMoveArrowL->SetupAttachment(RootComponent);
+	hangingMoveArrowL->SetRelativeLocation(FVector(40, -65, 40));	
+	hangingMoveArrowR = CreateDefaultSubobject<UArrowComponent>(TEXT("hangingMoveArrowR"));
+	hangingMoveArrowR->SetupAttachment(RootComponent);
+	hangingMoveArrowR->SetRelativeLocation(FVector(40, 65, 40));
+	// 측면 점프 이동 애로우
+	leftLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("leftLedgeArrow"));
+	leftLedgeArrow->SetupAttachment(RootComponent);
+	leftLedgeArrow->SetRelativeLocation(FVector(50, -150, 40));	
+	rightLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("rightLedgeArrow"));
+	rightLedgeArrow->SetupAttachment(RootComponent);
+	rightLedgeArrow->SetRelativeLocation(FVector(50, 150, 40));
 }
 
 // Called when the game starts or when spawned
@@ -95,30 +112,36 @@ void AAssassinPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 void AAssassinPlayer::MoveForward(float Value)
 {
-	if ((Controller != nullptr) && (Value != 0.0f))
+	if (!bHangingP)
 	{
-		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		if ((Controller != nullptr) && (Value != 0.0f))
+		{
+			// find out which way is forward
+			const FRotator Rotation = Controller->GetControlRotation();
+			const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
+			// get forward vector
+			const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+			AddMovementInput(Direction, Value);
+		}
 	}
 }
 
 void AAssassinPlayer::MoveRight(float Value)
 {
-	if ((Controller != nullptr) && (Value != 0.0f))
+	if (!bHangingP)
 	{
-		// find out which way is right
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		if ((Controller != nullptr) && (Value != 0.0f))
+		{
+			// find out which way is right
+			const FRotator Rotation = Controller->GetControlRotation();
+			const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
-		AddMovementInput(Direction, Value);
+			// get right vector 
+			const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+			// add movement in that direction
+			AddMovementInput(Direction, Value);
+		}
 	}
 }
 

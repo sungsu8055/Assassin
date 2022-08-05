@@ -24,4 +24,27 @@ public:
 	// 전진 속도 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float forwardSpeed;
+	// 매달림 상태 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bHangingAnim;
+	// 오르기 상태 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bClimbingAnim;
+	// 난간 측면 이동 상태 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bLedgeMovingRightAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bLedgeMovingLeftAnim;
+	// 난간 측면 이동 가능 여부 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bLedgeMoveRightAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bLedgeMoveLeftAnim;
+	// 측면 점프 이동 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bJumpRightLedgeAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bJumpLeftLedgeAnim;
+	// 측면 코너 이동 가능 여부 체크
+
 };
