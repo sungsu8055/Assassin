@@ -49,33 +49,42 @@ public:
 	class UArrowComponent* leftLedgeArrow;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UArrowComponent* rightLedgeArrow;
+	// 상단 점프 이동 애로우
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* upLedgeArrow;
 	// 조건 변수 --------------------------------------------------
 	// 벽 매달림 상태 확인 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bHangingP;
+	bool bHangingP = false;
 	// 측면 이동 가능 여부 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bMoveLeft;
+	bool bMoveLeft = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bMoveRight;
+	bool bMoveRight = false;
 	// 측면 이동 진행 여부 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bMovingLeft;
+	bool bMovingLeft = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bMovingRight;
+	bool bMovingRight = false;
 	// 측면 점프 이동 가능 여부 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bCanJumpLeft;
+	bool bCanJumpLeft = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bCanJumpRight;
+	bool bCanJumpRight = false;
 	// 측면 점프 이동 확인 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bIsJumpingLedge;
+	bool bIsJumpingLedge = false;
 	// 측면 코너 이동 가능 여부 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bCanTurnLeft;
+	bool bCanTurnLeft = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bCanTurnRight;
+	bool bCanTurnRight = false;
+	// 상단 점프 이동 가능 여부 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanJumpUp = false;
+	// 뒤돌기 상태 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bTurnedBack = false;
 
 	
 // <함수 선언부>

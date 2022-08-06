@@ -67,6 +67,10 @@ AAssassinPlayer::AAssassinPlayer()
 	rightLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("rightLedgeArrow"));
 	rightLedgeArrow->SetupAttachment(RootComponent);
 	rightLedgeArrow->SetRelativeLocation(FVector(50, 150, 40));
+	// 상단 점프 이동 애로우
+	upLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("upLedgeArrow"));
+	upLedgeArrow->SetupAttachment(RootComponent);
+	upLedgeArrow->SetRelativeLocation(FVector(65, 0, 290));
 }
 
 // Called when the game starts or when spawned

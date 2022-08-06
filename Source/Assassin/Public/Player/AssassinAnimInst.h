@@ -26,25 +26,30 @@ public:
 	float forwardSpeed;
 	// 매달림 상태 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bHangingAnim;
+	bool bHangingAnim = false;
 	// 오르기 상태 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bClimbingAnim;
+	bool bClimbingAnim = false;
 	// 난간 측면 이동 상태 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bLedgeMovingRightAnim;
+	bool bLedgeMovingRightAnim = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bLedgeMovingLeftAnim;
+	bool bLedgeMovingLeftAnim = false;
 	// 난간 측면 이동 가능 여부 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bLedgeMoveRightAnim;
+	bool bLedgeMoveRightAnim = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bLedgeMoveLeftAnim;
+	bool bLedgeMoveLeftAnim = false;
 	// 측면 점프 이동 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bJumpRightLedgeAnim;
+	bool bJumpRightLedgeAnim = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bJumpLeftLedgeAnim;
-	// 측면 코너 이동 가능 여부 체크
+	bool bJumpLeftLedgeAnim = false;
+	// 상단 점프 이동 가능 여부 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bJumpUpLedgeAnim = false;
+	// 뒤돌기 상태 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bTurnedBackAnim = false;
 
 };
