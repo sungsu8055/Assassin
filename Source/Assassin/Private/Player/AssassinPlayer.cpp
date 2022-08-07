@@ -56,10 +56,10 @@ AAssassinPlayer::AAssassinPlayer()
 	// 매달림 상태 좌우이동 애로우
 	hangingMoveArrowL = CreateDefaultSubobject<UArrowComponent>(TEXT("hangingMoveArrowL"));
 	hangingMoveArrowL->SetupAttachment(RootComponent);
-	hangingMoveArrowL->SetRelativeLocation(FVector(40, -65, 40));	
+	hangingMoveArrowL->SetRelativeLocation(FVector(40, -45, 100));	
 	hangingMoveArrowR = CreateDefaultSubobject<UArrowComponent>(TEXT("hangingMoveArrowR"));
 	hangingMoveArrowR->SetupAttachment(RootComponent);
-	hangingMoveArrowR->SetRelativeLocation(FVector(40, 65, 40));
+	hangingMoveArrowR->SetRelativeLocation(FVector(40, 45, 100));
 	// 측면 점프 이동 애로우
 	leftLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("leftLedgeArrow"));
 	leftLedgeArrow->SetupAttachment(RootComponent);

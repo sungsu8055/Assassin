@@ -52,6 +52,15 @@ public:
 	// 상단 점프 이동 애로우
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UArrowComponent* upLedgeArrow;
+	// 장애물 어레이 --------------------------------------------------
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FHitResult rechableLedge;
+	// 최소 거리 측정 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float distanceToLedge = 20000000000;
+	// 이동 희망 방향
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector desiredDir;
 	// 조건 변수 --------------------------------------------------
 	// 벽 매달림 상태 확인 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
