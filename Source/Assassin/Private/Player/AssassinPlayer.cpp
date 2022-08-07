@@ -70,7 +70,7 @@ AAssassinPlayer::AAssassinPlayer()
 	// 상단 점프 이동 애로우
 	upLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("upLedgeArrow"));
 	upLedgeArrow->SetupAttachment(RootComponent);
-	upLedgeArrow->SetRelativeLocation(FVector(65, 0, 290));
+	upLedgeArrow->SetRelativeLocation(FVector(0, 0, 130));
 }
 
 // Called when the game starts or when spawned
@@ -98,8 +98,8 @@ void AAssassinPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// 전력질주 모드 키 바인딩
-	PlayerInputComponent->BindAction("SprintMode", IE_Pressed, this, &AAssassinPlayer::OnActionSprintMode);
-	PlayerInputComponent->BindAction("SprintMode", IE_Released, this, &AAssassinPlayer::OnActionReleaseSprintMode);
+	PlayerInputComponent->BindAction("SprintMode", IE_Pressed, this, &AAssassinPlayer::OnActionParkourMode);
+	PlayerInputComponent->BindAction("SprintMode", IE_Released, this, &AAssassinPlayer::OnActionReleaseParkourMode);
 	// 내려가기 흐름 키 바인딩
 	PlayerInputComponent->BindAction("DownFlow", IE_Pressed, this, &AAssassinPlayer::OnActionDownFlow);
 
@@ -150,14 +150,14 @@ void AAssassinPlayer::MoveRight(float Value)
 }
 
 // 전력질주 모드 활성
-void AAssassinPlayer::OnActionSprintMode()
+void AAssassinPlayer::OnActionParkourMode()
 {
 	// 전력질주 모드 속도로 변경
 	GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
 }
 
 // 전력질주 모드 비활성
-void AAssassinPlayer::OnActionReleaseSprintMode()
+void AAssassinPlayer::OnActionReleaseParkourMode()
 {
 	// 일반이동 모드 속도로 변경
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;

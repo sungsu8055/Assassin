@@ -62,6 +62,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector desiredDir;
 	// 조건 변수 --------------------------------------------------
+	// 파쿠르 모드 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bParkourMode= false;
+	// 벽타기장애물 인식 확인 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bClimbObject = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bjumpOverObject = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bContactObject = false;
 	// 벽 매달림 상태 확인 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bHangingP = false;
@@ -115,8 +125,8 @@ public:
 	void MoveRight(float Value);
 
 	// 질주모드 함수
-	void OnActionSprintMode();
-	void OnActionReleaseSprintMode();
+	void OnActionParkourMode();
+	void OnActionReleaseParkourMode();
 	// 내려가기 흐름
 	void OnActionDownFlow();
 	// 올라가기 흐름
