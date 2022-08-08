@@ -98,6 +98,9 @@ public:
 	bool bCanTurnLeft = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bCanTurnRight = false;
+	// 측면 코너 이동 중 여부 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bTurning = false;
 	// 상단 점프 이동 가능 여부 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bCanJumpUp = false;
