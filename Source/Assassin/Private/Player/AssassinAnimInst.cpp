@@ -10,7 +10,7 @@ void UAssassinAnimInst::NativeUpdateAnimation(float DeltaSeconds)
 	Super::NativeUpdateAnimation(DeltaSeconds);
 
 	// 변수 대입을 위한 플레이어 캐스트
-	auto player = Cast<AAssassinPlayer>(TryGetPawnOwner());
+	player = Cast<AAssassinPlayer>(TryGetPawnOwner());
 	if (player) 
 	{
 		// 캐릭터 무브먼트 지역변수 선언

@@ -71,6 +71,13 @@ AAssassinPlayer::AAssassinPlayer()
 	upLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("upLedgeArrow"));
 	upLedgeArrow->SetupAttachment(RootComponent);
 	upLedgeArrow->SetRelativeLocation(FVector(0, 0, 130));
+	// 핸드 IK 애로우
+	leftHandIKArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("leftHandIKArrow"));
+	leftHandIKArrow->SetupAttachment(RootComponent);
+	leftHandIKArrow->SetRelativeLocation(FVector(5, -10, 100));
+	rightHandIKArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("rightHandIKArrow"));
+	rightHandIKArrow->SetupAttachment(RootComponent);
+	rightHandIKArrow->SetRelativeLocation(FVector(5, 10, 100));
 }
 
 // Called when the game starts or when spawned

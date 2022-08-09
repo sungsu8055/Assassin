@@ -52,6 +52,20 @@ public:
 	// 상단 점프 이동 애로우
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UArrowComponent* upLedgeArrow;
+	// IK -------------------------------------------------------------
+	// IK 측정 애로우
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* leftHandIKArrow;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* rightHandIKArrow;
+	// Hand IK 위치값
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector leftHandIK;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector RightHandIK;
+	// IK 실행 bool값
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool enableHangingHandIK;
 	// 장애물 어레이 --------------------------------------------------
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FHitResult rechableLedge;

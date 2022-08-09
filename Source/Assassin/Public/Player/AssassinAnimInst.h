@@ -18,6 +18,19 @@ public:
 	// 애님 업데이트 함수 원형
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 
+	// 플레이어 캐릭터 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class AAssassinPlayer* player;
+
+	// 핸드 IK 위치값
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector leftHandIKAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector rightHandIKAnim;
+	// IK 활성 여부 체크
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bEnableHangingHandIKAnim = false;
+
 	// 점프 중 체크 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsJumping;
@@ -51,5 +64,4 @@ public:
 	// 뒤돌기 상태 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bTurnedBackAnim = false;
-
 };
