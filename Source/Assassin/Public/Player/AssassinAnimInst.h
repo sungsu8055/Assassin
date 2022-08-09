@@ -27,6 +27,11 @@ public:
 	FVector leftHandIKAnim;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector rightHandIKAnim;
+	// foot IK 위치값
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector leftFootIKlocAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector rightFootIKlocAnim;
 	// IK 활성 여부 체크
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bEnableHangingHandIKAnim = false;

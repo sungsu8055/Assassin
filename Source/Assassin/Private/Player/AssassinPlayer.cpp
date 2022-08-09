@@ -56,10 +56,10 @@ AAssassinPlayer::AAssassinPlayer()
 	// 매달림 상태 좌우이동 애로우
 	hangingMoveArrowL = CreateDefaultSubobject<UArrowComponent>(TEXT("hangingMoveArrowL"));
 	hangingMoveArrowL->SetupAttachment(RootComponent);
-	hangingMoveArrowL->SetRelativeLocation(FVector(40, -45, 100));	
+	hangingMoveArrowL->SetRelativeLocation(FVector(15, -45, 100));	
 	hangingMoveArrowR = CreateDefaultSubobject<UArrowComponent>(TEXT("hangingMoveArrowR"));
 	hangingMoveArrowR->SetupAttachment(RootComponent);
-	hangingMoveArrowR->SetRelativeLocation(FVector(40, 45, 100));
+	hangingMoveArrowR->SetRelativeLocation(FVector(15, 45, 100));
 	// 측면 점프 이동 애로우
 	leftLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("leftLedgeArrow"));
 	leftLedgeArrow->SetupAttachment(RootComponent);
@@ -78,6 +78,13 @@ AAssassinPlayer::AAssassinPlayer()
 	rightHandIKArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("rightHandIKArrow"));
 	rightHandIKArrow->SetupAttachment(RootComponent);
 	rightHandIKArrow->SetRelativeLocation(FVector(5, 10, 100));
+	// 풋 IK 애로우
+	leftFootIKArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("leftFootIKArrow"));
+	leftFootIKArrow->SetupAttachment(RootComponent);
+	leftFootIKArrow->SetRelativeLocation(FVector(10, -15, -40));
+	rightFootIKArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("rightFootIKArrow"));
+	rightFootIKArrow->SetupAttachment(RootComponent);
+	rightFootIKArrow->SetRelativeLocation(FVector(10, 15, -40));
 }
 
 // Called when the game starts or when spawned

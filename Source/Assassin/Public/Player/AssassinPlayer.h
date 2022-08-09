@@ -58,14 +58,23 @@ public:
 	class UArrowComponent* leftHandIKArrow;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UArrowComponent* rightHandIKArrow;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* leftFootIKArrow;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UArrowComponent* rightFootIKArrow;
 	// Hand IK 위치값
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector leftHandIK;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector RightHandIK;
+	// foot IK 위치값
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector leftFootIKloc;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector rightFootIKloc;
 	// IK 실행 bool값
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool enableHangingHandIK;
+	bool enableHangingIK;
 	// 장애물 어레이 --------------------------------------------------
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FHitResult rechableLedge;
