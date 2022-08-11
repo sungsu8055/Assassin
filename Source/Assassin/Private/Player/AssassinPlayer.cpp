@@ -63,10 +63,10 @@ AAssassinPlayer::AAssassinPlayer()
 	// 측면 점프 이동 애로우
 	leftLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("leftLedgeArrow"));
 	leftLedgeArrow->SetupAttachment(RootComponent);
-	leftLedgeArrow->SetRelativeLocation(FVector(50, -150, 40));	
+	leftLedgeArrow->SetRelativeLocation(FVector(0, -150, 40));	
 	rightLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("rightLedgeArrow"));
 	rightLedgeArrow->SetupAttachment(RootComponent);
-	rightLedgeArrow->SetRelativeLocation(FVector(50, 150, 40));
+	rightLedgeArrow->SetRelativeLocation(FVector(0, 150, 40));
 	// 상단 점프 이동 애로우
 	upLedgeArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("upLedgeArrow"));
 	upLedgeArrow->SetupAttachment(RootComponent);
