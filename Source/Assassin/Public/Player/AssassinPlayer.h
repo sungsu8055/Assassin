@@ -88,6 +88,12 @@ public:
 	// 파쿠르 모드 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bParkourMode= false;
+	// 이동 방향 트레이스 위치 세팅 정수값
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int inputDirLocMode;
+	// 상단 흐름 모드
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bUpFlowMode = false;
 	// 벽타기장애물 인식 확인 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bClimbObject = false;
