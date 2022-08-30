@@ -29,7 +29,7 @@ public:
 	// 이동 -------------------------------------------------------------------------------------------
 	// 전력질주 모드
 	UPROPERTY(EditAnywhere)
-	float sprintSpeed = 600;
+	float sprintSpeed = 300;
 	// 일반이동 모드
 	UPROPERTY(EditAnywhere)
 	float walkSpeed = 170;
